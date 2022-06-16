@@ -1,6 +1,7 @@
 
 
 # imports
+from cgi import print_arguments
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -12,18 +13,20 @@ url = 'https://myeagle.hccs.edu/'
 driver.get(url)
 
 
-driver.find_element_by_xpath(
-    '/html/body/section/main/div/div[2]/a').click()
+deflog = 'https://hccsaweb.hccs.edu:8080/psp/csprd/?cmd=login&languageCd=ENG&'
 
-#text = driver.find_element_by_xpath('/html/body/section/main/div/div[2]/a/div').text
-# print(text)
+text = driver.find_element_by_xpath(
+    '/html/body/section/main/div/div[2]/a/div').text
+print(text)
 
+selection = input('Where do you want to go? (x): ')
+if selection == "x":
+    driver.get(deflog)
 driver.implicitly_wait(3)
 
-
+# for loggin in
 driver.find_element_by_xpath(
-    '/html/body/div/form/div/div/div[2]/font/div[2]/input').send_keys('testing')
-
-
-# driver.find_element_by_xpath('//*[@id="pwd"]').send_keys('test')
-# driver.find_element_by_xpath('//*[@id="login_form"]/div[3]/div[2]/button').click()
+    '//*[@id="userid"]').send_keys('username')
+driver.find_element_by_xpath(
+    '//*[@id="pwd"]').send_keys('testing')
+# driver.find_element_by_xpath('//*[@id="loginbox"]/font/div[6]/input').click()
