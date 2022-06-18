@@ -8,42 +8,39 @@ from selenium.webdriver.common.by import By
 
 # setups
 driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
+
+# modify this URL depending on website
 url = 'https://myeagle.hccs.edu/'
 driver.get(url)
 
 
-# get a list of all options
-text = driver.find_element(
-    By.XPATH, '/html/body/section/main/div/div[2]/a/div').text
-print(text)
+# For now im going to act like theres no config
 
 
-china = driver.find_element(By.CLASS_NAME, 'block-content')
-print(china)
-# print(driver.find_elements_by_class_name('block-content'))
+# get all objects that have links in website
+reftag = driver.find_elements(By.TAG_NAME, "a")
+# lists to store all the links found and their names
+links = []
+titles = []
+selection = []
+selnum = 0
+# add data to each
+for i in reftag:
+    titles.append(i.get_attribute('title'))
+    links.append(i.get_attribute('href'))
+    selnum += 1
+    selection.append(selnum)
+
+# combine the lists for selection
+print("##################################################################\n")
+print("Here is a list of all the links found in the website\n")
+for a, b, c in zip(selection, titles, links):
+    print(a, b, c)
+
+selchoice = input("Please select a number to go to: ")
+# driver.implicitly_wait(3)
 
 
-defl = 'https://hccsaweb.hccs.edu:8080/psp/csprd/?cmd=login&languageCd=ENG&'
-
-
-selection = input('Where do you want to go? (x): ')
-if selection == "x":
-
-    lik = driver.find_elements(By.TAG_NAME, "a")
-    links = []  # list to store all the links found on website
-    titles = []
-    for i in lik:
-        titles.append(i.get_attribute('title'))
-        links.append(i.get_attribute('href'))
-    print("-----------------------------------------\n")
-    print(links)
-    print("--------------------------\n")
-    print(titles)
-
-    print("-----")
-    for a, b in zip(titles, links):
-        print(a, b)
-driver.implicitly_wait(3)
 '''
 
 # for loggin in
