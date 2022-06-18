@@ -38,7 +38,11 @@ for a, b, c in zip(selection, titles, links):
     print(a, b, c)
 
 selchoice = int(input("Please select a number to go to: "))
-print(links[selchoice - 1])
+# set the url to the selected link in the list (use sel-1 due to format)
+selUrl = links[selchoice - 1]
+driver.get(selUrl)
+
+driver.implicitly_wait(4)
 
 driver.close()
 
