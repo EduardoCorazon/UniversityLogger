@@ -38,7 +38,7 @@ for a, b, c in zip(selection, titles, links):
     print(a, b, c)
 
 selchoice = int(input("Please select a number to go to: "))
-print(links[selchoice])
+print(links[selchoice - 1])
 
 driver.close()
 
