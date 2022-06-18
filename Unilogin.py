@@ -10,8 +10,8 @@ from selenium.webdriver.common.by import By
 driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
 
 # modify this URL depending on website
-url = 'https://myeagle.hccs.edu/'
-driver.get(url)
+mainUrl = 'https://myeagle.hccs.edu/'
+driver.get(mainUrl)
 
 
 # For now im going to act like theres no config
@@ -37,7 +37,11 @@ print("Here is a list of all the links found in the website\n")
 for a, b, c in zip(selection, titles, links):
     print(a, b, c)
 
-selchoice = input("Please select a number to go to: ")
+selchoice = int(input("Please select a number to go to: "))
+print(links[selchoice])
+
+driver.close()
+
 # driver.implicitly_wait(3)
 
 
