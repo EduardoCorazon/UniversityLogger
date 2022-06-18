@@ -4,28 +4,23 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
 
 # setups
 driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
 url = 'https://myeagle.hccs.edu/'
 driver.get(url)
 
-# create dictionary to store name and URL
-sel_dict = {
-    'name': [],
-    'url': [],
-}
-
 
 # get a list of all options
 text = driver.find_element_by_xpath(
     '/html/body/section/main/div/div[2]/a/div').text
 print(text)
-sel_dict["name"].append(text)
-print(sel_dict)
 
-print(driver.find_element_by_class_name('block-content'))
-print(driver.find_elements_by_class_name('block-content'))
+
+china = driver.find_element_by_class_name('block-content')
+print(china)
+# print(driver.find_elements_by_class_name('block-content'))
 
 
 defl = 'https://hccsaweb.hccs.edu:8080/psp/csprd/?cmd=login&languageCd=ENG&'
@@ -33,7 +28,15 @@ defl = 'https://hccsaweb.hccs.edu:8080/psp/csprd/?cmd=login&languageCd=ENG&'
 
 selection = input('Where do you want to go? (x): ')
 if selection == "x":
-    driver.get(deflog)
+
+    lnks = driver.find_elements_by_tag_name("a")
+    # traverse list
+    for i in lnks:
+        # get_attribute() to get all href
+        print(i.get_attribute('href'))
+    driver.quit()
+
+
 driver.implicitly_wait(3)
 
 # for loggin in
