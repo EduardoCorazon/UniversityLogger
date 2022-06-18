@@ -1,6 +1,11 @@
-
+'''
+Made by: Eduardo Corazon
+Description: Python script to automate Univerisity website log in and access main apps
+For configuration please modify the config.py file in this repo
+'''
 
 # imports
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -44,7 +49,7 @@ driver.get(selUrl)
 
 driver.implicitly_wait(4)
 
-driver.close()
+# driver.close()
 
 # driver.implicitly_wait(3)
 
