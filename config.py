@@ -7,11 +7,17 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
-from simple_term_menu import TerminalMenu
+#from simple_term_menu import TerminalMenu <- if on UNIX use this
+
 
 
 #Makes sure the user wants to run the configurator
 def Checkrunconf():
+    fruits = ["[a] apple", "[b] banana", "[o] orange"]
+    terminal_menu = TerminalMenu(fruits, title="Fruits")
+    menu_entry_index = terminal_menu.show()
+
+
     runconfig = input("Would you like to run the configurator now: [y/n]")
     if runconfig == "n":
         exit()
@@ -21,7 +27,7 @@ def Checkrunconf():
         print("please type in either 'y' or 'n'")
         Checkrunconf()
 
-
+Checkrunconf()
 '''
 def main():
     options = ["entry 1", "entry 2", "entry 3"]
