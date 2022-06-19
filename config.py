@@ -6,6 +6,19 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 
+
+def Checkrunconf(): #makes sure the user wants to run the configurator
+    runconfig = input("Would you like to run the configurator now: [y/n]")
+    if runconfig == "n":
+        exit()
+    elif runconfig == "y":
+        pass
+    else:
+        print("please type in either 'y' or 'n'")
+        Checkrunconf()
+
+Checkrunconf()
+
 # setups
 driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
 
