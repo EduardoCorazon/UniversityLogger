@@ -1,13 +1,17 @@
 '''
 This is the configuration file 
 '''
+#!/usr/bin/env python3
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
+from simple_term_menu import TerminalMenu
 
 
-def Checkrunconf(): #makes sure the user wants to run the configurator
+#Makes sure the user wants to run the configurator
+def Checkrunconf():
     runconfig = input("Would you like to run the configurator now: [y/n]")
     if runconfig == "n":
         exit()
@@ -17,10 +21,27 @@ def Checkrunconf(): #makes sure the user wants to run the configurator
         print("please type in either 'y' or 'n'")
         Checkrunconf()
 
-Checkrunconf()
 
-# setups
-driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
+'''
+def main():
+    options = ["entry 1", "entry 2", "entry 3"]
+    terminal_menu = TerminalMenu(options)
+    menu_entry_index = terminal_menu.show()
+    print(f"You have selected {options[menu_entry_index]}!")
+
+if __name__ == "__main__":
+    main()
+'''
+
+
+
+# aks user to choose their web browser
+def SelWebBrowser(): 
+    print("Please select a web browser to use: ")
+    print("By default Chrome will be used")
+    sel = input("")
+    driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
+    return driver
 
 
 # modify this URL depending on website
