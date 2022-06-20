@@ -3,8 +3,7 @@ This is the configuration file
 '''
 #!/usr/bin/env python3
 
-from email.policy import default
-from lib2to3.pgen2 import driver
+from os import platform
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -19,19 +18,10 @@ def Checkrunconf():
     if runconfig == "n":
         exit()
     elif runconfig == "y":
-        pass
+        SelWebBrowser() #stars config steps
     else:
         print("please type in either 'y' or 'n'")
         Checkrunconf()
-
-Checkrunconf()
-'''
-
-
-if __name__ == "__main__":
-    main()
-'''
-
 
 
 # aks user to choose their web browser
@@ -53,6 +43,8 @@ def SelWebBrowser():
         case default:
             driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
             return driver
+    return driver
+    SelMainURL()
             
             
 #modify the main Website URL based on University
@@ -73,6 +65,7 @@ def SelMainURL():
             mainUrl = 'https://hbu.edu/portal/'
             return mainUrl
     driver.get(mainUrl)
+    SelSubLink()
 
 
 #choose which sub link to go to
@@ -101,8 +94,7 @@ def SelSubLink():
     # set the url to the selected link in the list (use sel-1 due to format)
     selUrl = links[selchoice - 1]
     driver.get(selUrl)
-
-driver.implicitly_wait(4)
+    return selUrl
 
 # driver.close()
 
@@ -119,3 +111,12 @@ driver.find_element_by_xpath(
 # driver.find_element_by_xpath('//*[@id="loginbox"]/font/div[6]/input').click()
 
 '''
+
+################################################## Main Code #########################
+def main():
+    Checkrunconf()
+
+
+if __name__ == "__main__":
+    main()
+
