@@ -26,6 +26,7 @@ def Checkrunconf():
 
 # aks user to choose their web browser
 def SelWebBrowser():
+    global driver
     print("##################################################################\n") 
     print("Please select a web browser")
     print("Note: By default Chrome will be used\n")
@@ -46,7 +47,7 @@ def SelWebBrowser():
             
             
 #modify the main Website URL based on University
-def SelMainURL(driver):
+def SelMainURL():
     print("##################################################################\n")
     print("Please select your university")
     print("Note: By default HCC will be used")
@@ -66,7 +67,7 @@ def SelMainURL(driver):
 
 
 #choose which sub link to go to
-def SelSubLink(driver):
+def SelSubLink():
     # get all objects that have links in website
     reftag = driver.find_elements(By.TAG_NAME, "a")
     # lists to store all the links found and their names
