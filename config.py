@@ -35,7 +35,8 @@ if __name__ == "__main__":
 
 
 # aks user to choose their web browser
-def SelWebBrowser(): 
+def SelWebBrowser():
+    print("##################################################################\n") 
     print("Please select a web browser")
     print("Note: By default Chrome will be used")
     webchoice = ["Chrome", "Firefox", "Safari", "Edge"]
@@ -54,53 +55,52 @@ def SelWebBrowser():
             return driver
             
             
-
 #modify the main Website URL based on University
 def SelMainURL():
+    print("##################################################################\n")
     print("Please select your university")
-    print("Note: By default Chrome will be used")
-    Unichoice = ["HBU", "HCC"]
+    print("Note: By default HCC will be used")
+    Unichoice = ["HCC", "HBU"]
     Unichoicenum = [1,2,]
     for a,b in zip(Unichoicenum, Unichoice):
         print(a,b)
     sel = input("Select Number: ")
-    match sd:
+    match sel:
         case 1:
             mainUrl = 'https://myeagle.hccs.edu/'
             return mainUrl
-
+        case 2:
+            mainUrl = 'https://hbu.edu/portal/'
+            return mainUrl
     driver.get(mainUrl)
 
 
+#choose which sub link to go to
+def SelSubLink():
+    # get all objects that have links in website
+    reftag = driver.find_elements(By.TAG_NAME, "a")
+    # lists to store all the links found and their names
+    links = []
+    titles = []
+    selection = []
+    selnum = 0 #have to dynamically allocate selection list due to variablity in the number or URLs found
+    # add data to each
+    for i in reftag:
+        titles.append(i.get_attribute('title'))
+        links.append(i.get_attribute('href'))
+        selnum += 1
+        selection.append(selnum)
 
+    # combine the lists for selection
+    print("##################################################################\n")
+    print("Here is a list of all the links found in the website\n")
+    for a, b, c in zip(selection, titles, links):
+        print(a, b, c)
 
-# For now im going to act like theres no config
-
-
-# get all objects that have links in website
-reftag = driver.find_elements(By.TAG_NAME, "a")
-# lists to store all the links found and their names
-links = []
-titles = []
-selection = []
-selnum = 0
-# add data to each
-for i in reftag:
-    titles.append(i.get_attribute('title'))
-    links.append(i.get_attribute('href'))
-    selnum += 1
-    selection.append(selnum)
-
-# combine the lists for selection
-print("##################################################################\n")
-print("Here is a list of all the links found in the website\n")
-for a, b, c in zip(selection, titles, links):
-    print(a, b, c)
-
-selchoice = int(input("Please select a number to go to: "))
-# set the url to the selected link in the list (use sel-1 due to format)
-selUrl = links[selchoice - 1]
-driver.get(selUrl)
+    selchoice = int(input("Please select a number to go to: "))
+    # set the url to the selected link in the list (use sel-1 due to format)
+    selUrl = links[selchoice - 1]
+    driver.get(selUrl)
 
 driver.implicitly_wait(4)
 
