@@ -3,7 +3,6 @@ This is the configuration file
 '''
 #!/usr/bin/env python3
 
-from os import platform
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -18,7 +17,8 @@ def Checkrunconf():
     if runconfig == "n":
         exit()
     elif runconfig == "y":
-        SelWebBrowser() #stars config steps
+        SelWebBrowser()
+        
     else:
         print("please type in either 'y' or 'n'")
         Checkrunconf()
@@ -28,27 +28,25 @@ def Checkrunconf():
 def SelWebBrowser():
     print("##################################################################\n") 
     print("Please select a web browser")
-    print("Note: By default Chrome will be used")
+    print("Note: By default Chrome will be used\n")
     webchoice = ["Chrome", "Firefox", "Safari", "Edge"]
     webchoicenum = [1,2,3,4]
     for a,b in zip(webchoicenum, webchoice):
         print(a,b)
-    webselec = input("select Number:")
+    webselec = input("\nselect Number: ")
     match webselec:
-        case 1:
-            driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
-            return driver
-        case 2:
+        case "1":
+            driver = webdriver.Chrome(executable_path='C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe')
+            driver.get('https://myeagle.hccs.edu/')
+        case "2":
             pass #add path for firefox
         case default:
             driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
-            return driver
     return driver
-    SelMainURL()
             
             
 #modify the main Website URL based on University
-def SelMainURL():
+def SelMainURL(driver):
     print("##################################################################\n")
     print("Please select your university")
     print("Note: By default HCC will be used")
@@ -65,11 +63,10 @@ def SelMainURL():
             mainUrl = 'https://hbu.edu/portal/'
             return mainUrl
     driver.get(mainUrl)
-    SelSubLink()
 
 
 #choose which sub link to go to
-def SelSubLink():
+def SelSubLink(driver):
     # get all objects that have links in website
     reftag = driver.find_elements(By.TAG_NAME, "a")
     # lists to store all the links found and their names
