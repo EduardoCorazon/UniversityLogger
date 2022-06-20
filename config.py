@@ -3,21 +3,18 @@ This is the configuration file
 '''
 #!/usr/bin/env python3
 
+from email.policy import default
+from lib2to3.pgen2 import driver
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
-#from simple_term_menu import TerminalMenu <- if on UNIX use this
+#from simple_term_menu import TerminalMenu <- if on UNIX use this, Note to self: expand on this later https://github.com/IngoMeyer441/simple-term-menu
 
 
 
 #Makes sure the user wants to run the configurator
 def Checkrunconf():
-    fruits = ["[a] apple", "[b] banana", "[o] orange"]
-    terminal_menu = TerminalMenu(fruits, title="Fruits")
-    menu_entry_index = terminal_menu.show()
-
-
     runconfig = input("Would you like to run the configurator now: [y/n]")
     if runconfig == "n":
         exit()
@@ -29,11 +26,7 @@ def Checkrunconf():
 
 Checkrunconf()
 '''
-def main():
-    options = ["entry 1", "entry 2", "entry 3"]
-    terminal_menu = TerminalMenu(options)
-    menu_entry_index = terminal_menu.show()
-    print(f"You have selected {options[menu_entry_index]}!")
+
 
 if __name__ == "__main__":
     main()
@@ -43,16 +36,42 @@ if __name__ == "__main__":
 
 # aks user to choose their web browser
 def SelWebBrowser(): 
-    print("Please select a web browser to use: ")
-    print("By default Chrome will be used")
-    sel = input("")
-    driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
-    return driver
+    print("Please select a web browser")
+    print("Note: By default Chrome will be used")
+    webchoice = ["Chrome", "Firefox", "Safari", "Edge"]
+    webchoicenum = [1,2,3,4]
+    for a,b in zip(webchoicenum, webchoice):
+        print(a,b)
+    webselec = input("select Number:")
+    match webselec:
+        case 1:
+            driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
+            return driver
+        case 2:
+            pass #add path for firefox
+        case default:
+            driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver')
+            return driver
+            
+            
+
+#modify the main Website URL based on University
+def SelMainURL():
+    print("Please select your university")
+    print("Note: By default Chrome will be used")
+    Unichoice = ["HBU", "HCC"]
+    Unichoicenum = [1,2,]
+    for a,b in zip(Unichoicenum, Unichoice):
+        print(a,b)
+    sel = input("Select Number: ")
+    match sd:
+        case 1:
+            mainUrl = 'https://myeagle.hccs.edu/'
+            return mainUrl
+
+    driver.get(mainUrl)
 
 
-# modify this URL depending on website
-mainUrl = 'https://myeagle.hccs.edu/'
-driver.get(mainUrl)
 
 
 # For now im going to act like theres no config
