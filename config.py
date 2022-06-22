@@ -27,7 +27,7 @@ def Checkrunconf():
 ###########################################################################
 #import the Json Config File
 import json
-with open('Config.json') as f:
+with open('Defaults.json') as f:
     data = json.load(f)
 
 ###########################################################################
@@ -144,7 +144,7 @@ def main():
     Checkrunconf()
 
     #Update the Users Config file
-    with open('new_data.json','w') as f:
+    with open('Config.json','w') as f:
         json.dump(data, f, indent=2)
 
 
