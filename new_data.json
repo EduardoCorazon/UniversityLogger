@@ -1,16 +1,11 @@
 {
   "Defaults": [
     {
-      "Web Browser": "test2",
-      "MainPage": ""
-    },
-    {
-      "Web Browser": "Firefox",
-      "MainPage": ""
-    },
-    {
-      "Web Browser": "Safari",
-      "MainPage": ""
+      "WebBrowser": "Chrome",
+      "MainPage": "",
+      "SubPage": "",
+      "UserName": "",
+      "Password": ""
     }
   ]
 }
