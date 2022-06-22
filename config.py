@@ -37,7 +37,7 @@ def SelWebBrowser():
     webselec = input("\nselect Number: ")
     match webselec:
         case "1":
-            driver = webdriver.Chrome(executable_path='C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe')
+            driver = webdriver.Chrome(executable_path='C:\\Users\\coraz\\Downloads\\chromedriver_win32')
             driver.get('https://myeagle.hccs.edu/')
         case "2":
             pass #add path for firefox
