@@ -8,14 +8,4 @@ Will use electron + react to develop GUI ; Goal: protect from shoulder surfing a
 # imports
 # from config import *  # import config file
 
-import json
-with open('Config.json') as f:
-    data = json.load(f)
-
-for item in data['Defaults']:
-    item['WebBrowser'] = item['WebBrowser'].replace('Chrome', 'test2')
-    print(item['WebBrowser'])
-
-
-with open('new_data.json','w') as f:
-    json.dump(data, f, indent=2)
+import cryptography

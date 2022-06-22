@@ -123,6 +123,19 @@ def SelSubLink(driver):
         print(item['SubURL'])
     driver.get(selUrl)
 
+def Credentials():
+    #input prompt
+    print("##################################################################\n")
+    print("NOTE* Your credntials are stored in Defaults.json in plantext, but the file is encrypted to protect your data")
+    print("But just to be safe, make sure to keep the Config.json file safe")
+    print("Please input your credentials below: \n")
+    #ask for username
+    username  = input("U")
+
+
+    
+
+
 # driver.close()
 
 # driver.implicitly_wait(3)
