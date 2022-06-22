@@ -1,0 +1,6 @@
+
+{"Defaults":[
+    { "Web Browser":"Chrome", "MainPage":"" },
+    { "Web Browser":"Firefox", "MainPage":"" },
+    { "Web Browser":"Safari", "MainPage":"" }
+  ]}

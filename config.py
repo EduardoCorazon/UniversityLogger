@@ -3,11 +3,13 @@ This is the configuration file
 '''
 #!/usr/bin/env python3
 
+import json
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 #from simple_term_menu import TerminalMenu <- if on UNIX use this, Note to self: expand on this later https://github.com/IngoMeyer441/simple-term-menu
+
 
 
 
@@ -37,7 +39,7 @@ def SelWebBrowser():
     webselec = input("\nselect Number: ")
     match webselec:
         case "1":
-            driver = webdriver.Chrome(executable_path='"C:\\Users\\coraz\\Downloads\\chromedriver_win32\\chromedriver.exe"')
+            driver = webdriver.Chrome(executable_path='C:\\Users\\coraz\\Downloads\\chromedriver_win32\\chromedriver.exe')
             driver.get('https://myeagle.hccs.edu/')
         case "2":
             pass #add path for firefox
