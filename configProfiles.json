@@ -1,6 +1,11 @@
-
-{"Defaults":[
-    { "Web Browser":"Chrome", "MainPage":"" },
-    { "Web Browser":"Firefox", "MainPage":"" },
-    { "Web Browser":"Safari", "MainPage":"" }
-  ]}
+{
+    "Defaults": [
+      {
+        "WebBrowser": "Chrome",
+        "MainPage": "",
+        "SubPage":"",
+        "UserName":"",
+        "Password":""
+      }
+    ]
+  }
