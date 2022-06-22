@@ -24,15 +24,11 @@ def Checkrunconf():
     else:
         print("please type in either 'y' or 'n'")
         Checkrunconf()
-
-
-
 ###########################################################################
 #import the Json Config File
 import json
 with open('Config.json') as f:
     data = json.load(f)
-
 
 ###########################################################################
 # aks user to choose their web browser
@@ -66,18 +62,21 @@ def SelWebBrowser():
     for item in data['Defaults']:
         item['WebBrowser'] = item['WebBrowser'].replace('Chrome', WebBrowserFinal)
         print(item['WebBrowser'])
-    return driver
+    SelMainURL(driver)
 
 ###########################################################################    
 #modify the main Website URL based on University
 def SelMainURL(driver):
+    #initiate prompt
     print("##################################################################\n")
     print("Please select your university")
     print("Note: By default HCC will be used")
     Unichoice = ["HCC", "HBU"]
     Unichoicenum = [1,2,]
+    #display options
     for a,b in zip(Unichoicenum, Unichoice):
         print(a,b)
+    #let user choose
     sel = input("Select Number: ")
     mainUrl=''
     match sel:
@@ -85,11 +84,16 @@ def SelMainURL(driver):
             mainUrl = 'https://myeagle.hccs.edu/'
         case "2":
             mainUrl = 'https://hbu.edu/portal/'
+    #update config file
+    for item in data['Defaults']:
+        item['MainURL'] = item['MainURL'].replace('https://myeagle.hccs.edu/', mainUrl)
+        print(item['MainURL'])
     driver.get(mainUrl)
+    SelSubLink(driver)
 
 ###########################################################################
 #choose which sub link to go to
-def SelSubLink():
+def SelSubLink(driver):
     # get all objects that have links in website
     reftag = driver.find_elements(By.TAG_NAME, "a")
     # lists to store all the links found and their names
@@ -113,8 +117,11 @@ def SelSubLink():
     selchoice = int(input("Please select a number to go to: "))
     # set the url to the selected link in the list (use sel-1 due to format)
     selUrl = links[selchoice - 1]
+    #update the config files
+    for item in data['Defaults']:
+        item['SubURL'] = item['SubURL'].replace('', selUrl)
+        print(item['SubURL'])
     driver.get(selUrl)
-    return selUrl
 
 # driver.close()
 
@@ -135,7 +142,6 @@ driver.find_element_by_xpath(
 ################################################## Main Code #########################
 def main():
     Checkrunconf()
-    SelMainURL(driver)
 
     #Update the Users Config file
     with open('new_data.json','w') as f:

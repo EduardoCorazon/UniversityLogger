@@ -2,8 +2,8 @@
     "Defaults": [
       {
         "WebBrowser": "Chrome",
-        "MainPage": "",
-        "SubPage":"",
+        "MainURL": "https://myeagle.hccs.edu/",
+        "SubURL":"",
         "UserName":"",
         "Password":""
       }
