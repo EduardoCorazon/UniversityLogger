@@ -4,11 +4,15 @@ This is the configuration file
 #!/usr/bin/env python3
 
 import json
+from cryptography.fernet import Fernet
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 #from simple_term_menu import TerminalMenu <- if on UNIX use this, Note to self: expand on this later https://github.com/IngoMeyer441/simple-term-menu
+
+
+
 
 
 
@@ -155,11 +159,10 @@ driver.find_element_by_xpath(
 ################################################## Main Code #########################
 def main():
     Checkrunconf()
-
     #Update the Users Config file
     with open('Config.json','w') as f:
         json.dump(data, f, indent=2)
-
+    
 
 if __name__ == "__main__":
     main()
