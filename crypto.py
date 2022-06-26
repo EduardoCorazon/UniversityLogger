@@ -3,7 +3,7 @@ from cryptography.fernet import Fernet
 
 #create key
 key = Fernet.generate_key()
-with open ('mykey', 'wb') as mykey:
+with open ('mykey.key', 'wb') as mykey:
     mykey.write(key)
 
 #load up key
@@ -16,7 +16,7 @@ f = Fernet(key)
 with open('test.csv', 'rb') as original_file:
     original = original_file.read()
 encrypted = f.encrypt(original)
-with open ('encrypt_test', 'wb') as encrypted_file:
+with open ('encrypt_test.csv', 'wb') as encrypted_file:
     encrypted_file.write(encrypted)
 
 #decrypt
