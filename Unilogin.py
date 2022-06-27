@@ -8,6 +8,7 @@ Will use electron + react to develop GUI ; Goal: protect from shoulder surfing a
 # imports
 import json
 import webbrowser
+from crypto import *
 from config import *
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -15,7 +16,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 
 
-'''
 
 #import Data from Json file
 with open('Defaults.json') as f:
@@ -37,14 +37,13 @@ def loadconfig():
     #load up the main website 
 
 
-'''
+
 #main code
 def main():
-    '''
     loadconfig()
+    
     for item in data['Defaults']:
         print(item['MainURL'])
-    '''
     
 
 if __name__ == "__main__":
