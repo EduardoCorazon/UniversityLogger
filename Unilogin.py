@@ -6,8 +6,8 @@ Will use electron + react to develop GUI ; Goal: protect from shoulder surfing a
 '''
 
 # imports
+from distutils.command.config import config
 import json
-from crypto import *
 from config import *
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -42,8 +42,7 @@ def main():
     loadconfig()
 
     for item in data['Defaults']:
-        print(item['MainURL'])
-    
+        x = print(item['MainURL'])
 
 if __name__ == "__main__":
     main()
