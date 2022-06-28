@@ -13,10 +13,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 
-
-
-
-
 def loadconfig():
     #display primary message
     print("This program will run on default settings, please run config.py to customize your experince!")
