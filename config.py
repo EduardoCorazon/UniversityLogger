@@ -37,6 +37,8 @@ with open('Defaults.json') as f:
 ###########################################################################
 #find out what system the User is running to ser chromedriver location
 def SetLocation():
+    print("##################################################################\n")
+    print("Detecting Os type...") 
     global DriverLocation
     #Check what sustem the User is running
     UserOs = platform.system()
@@ -49,7 +51,7 @@ def SetLocation():
         DriverLocation= '/usr/bin/chromedriver'
     for item in data['Defaults']:
         item['ChromedriverLocation'] = item['ChromedriverLocation'].replace('', DriverLocation)
-        print(item['ChromedriverLocation'])
+        print("Configuration file will be made for "+ platform.system() + " OS")
     SelWebBrowser()
 
 
@@ -86,12 +88,8 @@ def SelWebBrowser():
     #update config file   
     for item in data['Defaults']:
         item['WebBrowser'] = item['WebBrowser'].replace('Chrome', WebBrowserFinal)
-        print(item['WebBrowser'])
+        print(item['WebBrowser']+ " will be used")
     SelMainURL(driver)
-
-
-
-
 
 ###########################################################################    
 #modify the main Website URL based on University
@@ -116,7 +114,7 @@ def SelMainURL(driver):
     #update config file
     for item in data['Defaults']:
         item['MainURL'] = item['MainURL'].replace('https://myeagle.hccs.edu/', mainUrl)
-        print(item['MainURL'])
+        print("The main URL will be: "+item['MainURL'])
     driver.get(mainUrl)
     SelSubLink(driver)
 
@@ -149,7 +147,7 @@ def SelSubLink(driver):
     #update the config files
     for item in data['Defaults']:
         item['SubURL'] = item['SubURL'].replace('', selUrl)
-        print(item['SubURL'])
+        print("Website will go to: "+item['SubURL'])
     driver.get(selUrl)
 
 def Credentials():
