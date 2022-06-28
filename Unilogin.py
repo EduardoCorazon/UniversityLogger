@@ -16,9 +16,6 @@ from selenium.webdriver.common.by import By
 
 
 
-#import Data from Json file
-with open('Config.json') as f:
-    data = json.load(f)
 
 def loadconfig():
     #display primary message
@@ -30,7 +27,11 @@ def loadconfig():
     #Determine if User configuration file exists, else use default
     Configcheck = exists('Config.json')
     if Configcheck == True:
-        print("config exists")
+        with open('Config.json') as f:
+            data = json.load(f)
+    else:
+        with open('Defaults.json') as f:
+            data = json.load(f)
 
     #import Json file values
     for item in data['Defaults']:
