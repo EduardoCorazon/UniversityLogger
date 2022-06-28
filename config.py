@@ -53,9 +53,18 @@ def SelWebBrowser():
     webselec = input("\nselect Number: ")
     #let the user choose
     WebBrowserFinal = ''
+    #Check what sustem the User is running
+    UserOs = print(platform.system())
+
     match webselec:
         case "1":
-            driver = webdriver.Chrome(executable_path='C:\\Users\\coraz\\Downloads\\chromedriver_win32 (1)\\chromedriver.exe', options=options)
+            #set path based on OS
+            if UserOs == "Windows":
+                driver = webdriver.Chrome(executable_path='C:\\Users\\coraz\\Downloads\\chromedriver_win32 (1)\\chromedriver.exe', options=options)
+            elif UserOs == "Darwin":
+                driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver", options=options)
+            else:
+                driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver', options=options)
             WebBrowserFinal = "Chrome"
         case "2":
             WebBrowserFinal = "Firefox"
@@ -66,6 +75,8 @@ def SelWebBrowser():
     for item in data['Defaults']:
         item['WebBrowser'] = item['WebBrowser'].replace('Chrome', WebBrowserFinal)
         print(item['WebBrowser'])
+        item['ChromedriverLocation'] = item['ChromedriverLocation'].replace('', UserOs)
+        print(item['ChromedriverLocation'])
     SelMainURL(driver)
 
 ###########################################################################    

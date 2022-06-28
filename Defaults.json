@@ -4,6 +4,7 @@
         "WebBrowser": "Chrome",
         "MainURL": "https://myeagle.hccs.edu/",
         "SubURL":"",
+        "ChromedriverLocation":"",
         "UserName":"",
         "Password":""
       }
