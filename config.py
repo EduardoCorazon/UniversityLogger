@@ -153,14 +153,50 @@ def SelSubLink(driver):
 def Credentials():
     #input prompt
     print("##################################################################\n")
-    print("NOTE* Your credntials are stored in Defaults.json in plantext, but the file is encrypted to protect your data")
-    print("But just to be safe, make sure to keep the Config.json file safe")
-    print("Please input your credentials below: \n")
+    print("NOTE* Your credntials will be stored in an encrypted Config.json file")
+    print("Please input your credentials for the site you want to access below: \n")
     #ask for username
-    username  = input("U")
-
-
+    username  = input("Username/email: ")
+    password = input("Password: ")
+    for item in data['Defaults']:
+        item['UserName'] = item['UserName'].replace('', username)
+        item['PassWord'] = item['PassWord'].replace('', password)
     
+    #Guide user to input xpath
+    print("It's likely the script won't be a ble to find the the correct xpath to input credentials")
+    print("Therefore, you need to manually input the username and password fields, Here's how to do it:")
+    print("    1. right click on where you input your username/email")
+    print("    2. select 'inspect element'")
+    print("    3. right click the highligted element and hover on 'copy'")
+    print("    4. click 'xpath' and now simply paste it below!")
+    print("repeat for Password field and 'login' button\n")
+
+    xpathUser = input("Paste xpath for username: ")
+    xpathpass = input("Paste xpath for password: ")
+    xpathButn = input("Paste xpath for Button: ")
+    
+    #test credentials
+    print("Testing credentials...")
+    driver.find_element_by_xpath(xpathUser).send_keys('username')
+    driver.find_element_by_xpath(xpathpass).send_keys('testing')
+    driver.find_element_by_xpath(xpathButn).click()
+    '''
+    driver.find_element_by_xpath('//*[@id="userid"]').send_keys('username')
+    driver.find_element_by_xpath('//*[@id="pwd"]').send_keys('testing')
+    driver.find_element_by_xpath('//*[@id="loginbox"]/font/div[6]/input').click()
+    '''
+    #Verify credentials work
+    workcheck = input("Did the credentials work?: [y/n]")
+    if workcheck == "y":
+        print("Good! \nNow encrypting file...")
+        encrypt()
+    else:
+        print("Retrying Credential input...")
+        Credentials()
+
+
+def encrypt():
+    pass
 
 
 # driver.close()
@@ -171,18 +207,16 @@ def Credentials():
 '''
 
 # for loggin in
-driver.find_element_by_xpath(
-    '//*[@id="userid"]').send_keys('username')
-driver.find_element_by_xpath(
-    '//*[@id="pwd"]').send_keys('testing')
-# driver.find_element_by_xpath('//*[@id="loginbox"]/font/div[6]/input').click()
+driver.find_element_by_xpath('//*[@id="userid"]').send_keys('username')
+driver.find_element_by_xpath('//*[@id="pwd"]').send_keys('testing')
+driver.find_element_by_xpath('//*[@id="loginbox"]/font/div[6]/input').click()
 
 '''
 
 ################################################## Main Code #########################
 def main():
     Checkrunconf()
-    #Update the Users Config file
+    #Update/create the Users Config file
     with open('Config.json','w') as f:
         json.dump(data, f, indent=2)
     
