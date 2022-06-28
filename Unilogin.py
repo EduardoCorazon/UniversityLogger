@@ -7,12 +7,12 @@ Will use electron + react to develop GUI ; Goal: protect from shoulder surfing a
 
 # imports
 import json
-import webbrowser
-from config import *
+from os.path import exists
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
+
 
 
 
@@ -26,6 +26,12 @@ def loadconfig():
     #fix terminal bug
     options = webdriver.ChromeOptions()
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
+
+    #Determine if User configuration file exists, else use default
+    Configcheck = exists('Config.json')
+    if Configcheck == True:
+        print("config exists")
+
     #import Json file values
     for item in data['Defaults']:
         Webbrowser = item['WebBrowser']
