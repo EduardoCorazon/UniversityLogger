@@ -23,7 +23,7 @@ def Checkrunconf():
     if runconfig == "n":
         exit()
     elif runconfig == "y":
-        SelWebBrowser()
+        SetLocation()
         
     else:
         print("please type in either 'y' or 'n'")
@@ -33,6 +33,26 @@ def Checkrunconf():
 import json
 with open('Defaults.json') as f:
     data = json.load(f)
+
+###########################################################################
+#find out what system the User is running to ser chromedriver location
+def SetLocation():
+    global DriverLocation
+    #Check what sustem the User is running
+    UserOs = platform.system()
+    #set path based on OS
+    if UserOs == "Windows":                
+        DriverLocation = 'C:\\Users\\coraz\\Downloads\\chromedriver_win32 (1)\\chromedriver.exe'
+    elif UserOs == "Darwin":
+        DriverLocation = "/usr/local/bin/chromedriver"
+    else:
+        DriverLocation= '/usr/bin/chromedriver'
+    for item in data['Defaults']:
+        item['ChromedriverLocation'] = item['ChromedriverLocation'].replace('', DriverLocation)
+        print(item['ChromedriverLocation'])
+    SelWebBrowser()
+
+
 
 ###########################################################################
 # aks user to choose their web browser
@@ -53,18 +73,10 @@ def SelWebBrowser():
     webselec = input("\nselect Number: ")
     #let the user choose
     WebBrowserFinal = ''
-    #Check what sustem the User is running
-    UserOs = print(platform.system())
-
     match webselec:
         case "1":
-            #set path based on OS
-            if UserOs == "Windows":
-                driver = webdriver.Chrome(executable_path='C:\\Users\\coraz\\Downloads\\chromedriver_win32 (1)\\chromedriver.exe', options=options)
-            elif UserOs == "Darwin":
-                driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver", options=options)
-            else:
-                driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver', options=options)
+            print(DriverLocation)
+            driver = webdriver.Chrome(executable_path=DriverLocation, options=options)
             WebBrowserFinal = "Chrome"
         case "2":
             WebBrowserFinal = "Firefox"
@@ -75,9 +87,11 @@ def SelWebBrowser():
     for item in data['Defaults']:
         item['WebBrowser'] = item['WebBrowser'].replace('Chrome', WebBrowserFinal)
         print(item['WebBrowser'])
-        item['ChromedriverLocation'] = item['ChromedriverLocation'].replace('', UserOs)
-        print(item['ChromedriverLocation'])
     SelMainURL(driver)
+
+
+
+
 
 ###########################################################################    
 #modify the main Website URL based on University
