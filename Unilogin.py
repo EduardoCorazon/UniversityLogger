@@ -36,6 +36,11 @@ def loadconfig():
         DriverLocation = item['ChromedriverLocation']
         MainURL = item['MainURL']
         SubURL = item['SubURL']
+        Username = item['UserName']
+        Password = item['PassWord']
+        xpathUser = item['XpathUser']
+        xpathPass = item['XpathPass']
+        xpathBtn = item['XpathBtn']
 
     #check what web Browser to use
     if Webbrowser == "Chrome":
@@ -50,6 +55,10 @@ def loadconfig():
         driver.get(MainURL)
     else:
         driver.get(SubURL)
+        #auto login user
+        driver.find_element_by_xpath(xpathUser).send_keys(Username)
+        driver.find_element_by_xpath(xpathPass).send_keys(Password)
+        driver.find_element_by_xpath(xpathBtn).click()
 
 
 #main code

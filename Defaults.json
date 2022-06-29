@@ -6,7 +6,10 @@
         "SubURL":"",
         "ChromedriverLocation":"",
         "UserName":"",
-        "PassWord":""
+        "PassWord":"",
+        "XpathUser":"",
+        "XpathPass":"",
+        "XpathBtn":""
       }
     ]
   }

@@ -182,14 +182,15 @@ def Credentials(driver):
     driver.find_element_by_xpath(xpathUser).send_keys(username)
     driver.find_element_by_xpath(xpathpass).send_keys(password)
     driver.find_element_by_xpath(xpathButn).click()
-    '''
-    driver.find_element_by_xpath('//*[@id="userid"]').send_keys('username')
-    driver.find_element_by_xpath('//*[@id="pwd"]').send_keys('testing')
-    driver.find_element_by_xpath('//*[@id="loginbox"]/font/div[6]/input').click()
-    '''
+    
     #Verify credentials work
     workcheck = input("Did the credentials work?[y/n]: ")
     if workcheck == "y":
+        #add xpaths to Config json file
+        for item in data['Defaults']:
+            item['XpathUser'] = item['XpathUser'].replace('', xpathUser)
+            item['XpathPass'] = item['XpathPass'].replace('', xpathpass)
+            item['XpathBtn'] = item['XpathBtn'].replace('', xpathButn)
         print("Good! \nNow creating your configuration file and encrypting it...")
         #Update/create the Users Config file
         with open('Config.json','w') as f:
