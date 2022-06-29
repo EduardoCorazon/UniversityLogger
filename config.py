@@ -150,8 +150,9 @@ def SelSubLink(driver):
         item['SubURL'] = item['SubURL'].replace('', selUrl)
         print("Website will go to: "+item['SubURL'])
     driver.get(selUrl)
+    Credentials(driver)
 
-def Credentials():
+def Credentials(driver):
     #input prompt
     print("##################################################################\n")
     print("NOTE* Your credntials will be stored in an encrypted Config.json file")
@@ -178,8 +179,8 @@ def Credentials():
     
     #test credentials
     print("Testing credentials...")
-    driver.find_element_by_xpath(xpathUser).send_keys('username')
-    driver.find_element_by_xpath(xpathpass).send_keys('testing')
+    driver.find_element_by_xpath(xpathUser).send_keys(username)
+    driver.find_element_by_xpath(xpathpass).send_keys(password)
     driver.find_element_by_xpath(xpathButn).click()
     '''
     driver.find_element_by_xpath('//*[@id="userid"]').send_keys('username')
@@ -187,17 +188,18 @@ def Credentials():
     driver.find_element_by_xpath('//*[@id="loginbox"]/font/div[6]/input').click()
     '''
     #Verify credentials work
-    workcheck = input("Did the credentials work?: [y/n]")
+    workcheck = input("Did the credentials work?[y/n]: ")
     if workcheck == "y":
-        print("Good! \nNow encrypting file...")
-        encrypt()
+        print("Good! \nNow creating your configuration file and encrypting it...")
+        #Update/create the Users Config file
+        with open('Config.json','w') as f:
+            json.dump(data, f, indent=2)
+        loadkey() #load up our key
+        encrypt() #encrypt our configuration file
     else:
         print("Retrying Credential input...")
-        Credentials()
+        Credentials(driver)
 
-
-def encrypt():
-    pass
 
 
 # driver.close()
@@ -217,9 +219,6 @@ driver.find_element_by_xpath('//*[@id="loginbox"]/font/div[6]/input').click()
 ################################################## Main Code #########################
 def main():
     Checkrunconf()
-    #Update/create the Users Config file
-    with open('Config.json','w') as f:
-        json.dump(data, f, indent=2)
     
 
 if __name__ == "__main__":
