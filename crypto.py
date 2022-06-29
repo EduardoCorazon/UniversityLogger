@@ -20,7 +20,7 @@ def encrypt():
     with open('Config.json', 'rb') as original_file:
         original = original_file.read()
     encrypted = f.encrypt(original)
-    with open ('encrypt_Config.json', 'wb') as encrypted_file:
+    with open ('Config.json', 'wb') as encrypted_file:
         encrypted_file.write(encrypted)
 
 
@@ -32,8 +32,8 @@ def decrypt():
     
     #decrypt
     f = Fernet(key)
-    with open('encrypt_Config.json', 'rb') as encrypted_file:
+    with open('Config.json', 'rb') as encrypted_file:
         encrypted = encrypted_file.read()
     decrypted = f.decrypt(encrypted)
-    with open('decrypted_Config.json', 'wb') as decrypted_file:
+    with open('Config.json', 'wb') as decrypted_file:
         decrypted_file.write(decrypted)

@@ -7,7 +7,7 @@ Will use electron + react to develop GUI ; Goal: protect from shoulder surfing a
 
 # imports
 import json
-from crypto import loadkey,decrypt
+from crypto import encrypt,decrypt
 from os.path import exists
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -65,6 +65,7 @@ def loadconfig():
 def main():
     decrypt()#decrypt the Config.json
     loadconfig()
+    encrypt()#re-encrypt the users Config.json once done
 
 if __name__ == "__main__":
     main()
