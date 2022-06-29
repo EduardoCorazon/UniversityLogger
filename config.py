@@ -5,6 +5,7 @@ This is the configuration file
 
 import json
 import platform
+from crypto import *
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
