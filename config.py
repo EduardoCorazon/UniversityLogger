@@ -45,7 +45,7 @@ def SetLocation():
     UserOs = platform.system()
     #set path based on OS
     if UserOs == "Windows":                
-        DriverLocation = 'C:\\Users\\coraz\\Downloads\\chromedriver_win32 (1)\\chromedriver.exe'
+        DriverLocation = 'C:\\chromedriver_win32\\chromedriver.exe'
     elif UserOs == "Darwin":
         DriverLocation = "/usr/local/bin/chromedriver"
     else:
