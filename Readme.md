@@ -7,8 +7,10 @@ This tools is an Automatic Login script to prevent Shoulder surfing. Unlike just
 
 1. Simply download the project and unzip it to any desired location.
 
-2. To use the script first run <em><b>Config.py</b></em> and follow all the steps.
+2. Download the chrome webdriver if you havent already (still need to test firefox) and if on windows save it to "C:\" (should look like C:\Chromedrive\chromedriver.exe)
 
-3. The configuration should be very easy to follow and once it's done there will be an encrypted Config.json file which contains your credentials.
+3. To use the script first run <em><b>Config.py</b></em> and follow all the steps.
+
+4. The configuration should be very easy to follow and once it's done there will be an encrypted Config.json file which contains your credentials.
 Enjoy!
 
